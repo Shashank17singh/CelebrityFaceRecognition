@@ -16,13 +16,12 @@ function init() {
     });
 
     dz.on("complete", function (file) {
-        let imageData = file.dataURL;
-        
-        var url: "https://celebrity-face-recognition-delta.vercel.app/classify_image";
-
-        $.post(url, {
-            image_data: file.dataURL
-        },function(data, status) {
+    let imageData = file.dataURL;
+    
+    var url = "https://celebrity-face-recognition-delta.vercel.app/classify_image";
+    $.post(url, {
+        image_data: file.dataURL
+    }, function(data, status) {
             /* 
             Below is a sample response if you have two faces in an image lets say virat and roger together.
             Most of the time if there is one person in the image you will get only one element in below array
