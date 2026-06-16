@@ -2,12 +2,18 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import util
 
-app = Flask(__name__)
+app = Flask(__name__,
+            template_folder='templates',
+            static_folder='static')
 
 util.load_saved_artifacts()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/classify_image', methods=['POST'])
 def classify_image():
@@ -15,10 +21,6 @@ def classify_image():
     response = jsonify(util.classify_image(image_data))
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
-
-@app.route('/', methods=['GET'])
-def home():
-    return "Celebrity Face Recognition API is running!"
 
 if __name__ == "__main__":
     print("Starting Python Flask Server for Sports Celebrity Face Recognition")
