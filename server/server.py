@@ -1,9 +1,12 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from flask import Flask, request, jsonify
 import util
 
 app = Flask(__name__)
 
-# Load artifacts at module level — runs on Vercel import
 util.load_saved_artifacts()
 
 @app.route('/classify_image', methods=['POST'])
