@@ -18,7 +18,7 @@ function init() {
     dz.on("complete", function (file) {
     let imageData = file.dataURL;
     
-    var url = "https://celebrity-face-recognition-delta.vercel.app/classify_image";
+    var url = "https://celebrity-face-recognition-xi.vercel.app/classify_image";
     $.post(url, {
         image_data: file.dataURL
     }, function(data, status) {
