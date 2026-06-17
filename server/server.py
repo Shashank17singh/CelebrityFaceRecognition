@@ -9,7 +9,7 @@ app = Flask(__name__, template_folder='templates')
 
 util.load_saved_artifacts()
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
@@ -26,4 +26,5 @@ def classify_image():
     return response
 
 if __name__ == "__main__":
+    print("Starting Python Flask Server for Sports Celebrity Face Recognition")
     app.run(port=5000)
