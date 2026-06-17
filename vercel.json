@@ -4,8 +4,6 @@
     { "src": "server/server.py", "use": "@vercel/python" }
   ],
   "routes": [
-    { "src": "/static/images/(.*)", "dest": "server/server.py" },
-    { "src": "/static/(.*)", "dest": "server/server.py" },
     { "src": "/(.*)", "dest": "server/server.py" }
   ]
 }
