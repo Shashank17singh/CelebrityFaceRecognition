@@ -2,19 +2,21 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 import util
 
-app = Flask(__name__,
-            template_folder='templates',
-            static_folder='static',
-            static_url_path='/assets')
+app = Flask(__name__, template_folder='templates')
 
 util.load_saved_artifacts()
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/assets/<path:filename>')
+def assets(filename):
+    static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+    return send_from_directory(static_dir, filename)
 
 @app.route('/classify_image', methods=['POST'])
 def classify_image():
